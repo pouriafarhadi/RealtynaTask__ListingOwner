@@ -82,7 +82,7 @@ class CheckRoomAvailability(GenericAPIView):
 
 class PropertyReservationsReportView(GenericAPIView):
     queryset = Reservation.objects.all()
-
+    serializer_class = ReservationSerializer
     def get(self, request, property_id):
         try:
             property_obj = Property.objects.get(id=property_id)
