@@ -1,0 +1,17 @@
+# general modules
+django
+python-decouple
+djangorestframework
+
+
+# third-party modules
+
+django-filter # filtering data responses
+drf-yasg[validation] # documentation by swagger and redoc
+
+#postgre database module
+
+psycopg2-binary
+# refacoring and testing
+black
+flake8

@@ -1,0 +1,64 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Django stuff:
+*.log
+media/
+
+# PostgreSQL database files (via Docker)
+pgdata/
+db_data/
+*.pgsql
+./data
+./pgadmin_data
+# Ignore Docker files and volumes
+docker-compose.override.yml
+docker-compose.*
+*.env
+.env.*
+
+# Ignore Docker-related logs and generated files
+docker_logs/
+.docker/
+
+# Ignore static and compiled files
+staticfiles/
+
+# Environment variables files
+.env
+*.env
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# MyPy
+.mypy_cache/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore compiled HTML and templates
+*.html.pyc
+templates/*.pyc
+
+# Ignore temporary files
+*.tmp
+*.temp

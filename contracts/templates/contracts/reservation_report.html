@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Reservation Report for {{ property_name }}</h1>
+    <hr>
+
+    {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Room Number</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in data %}
+                    <tr>
+                        <td>{{ reservation.customer }}</td>
+                        <td>{{ reservation.room_number }}</td>
+                        <td>{{ reservation.reservation_starts }}</td>
+                        <td>{{ reservation.reservation_ends }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No reservations found.</p>
+    {% endif %}
+</body>
+</html>
