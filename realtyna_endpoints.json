@@ -1,0 +1,276 @@
+swagger: '2.0'
+info:
+  title: Realtyna Task API
+  description: this is a test api for my project
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: pouria.f8410@gmail.com
+  license:
+    name: MIT License
+  version: v1
+host: localhost:8000
+schemes:
+- http
+basePath: /api/v1
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /property/:
+    get:
+      operationId: property_list
+      description: Property CRUD functionality using ModelViewSet
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Property'
+      tags:
+      - property
+    post:
+      operationId: property_create
+      description: Property CRUD functionality using ModelViewSet
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Property'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Property'
+      tags:
+      - property
+    parameters: []
+  /property/{id}/:
+    get:
+      operationId: property_read
+      description: Property CRUD functionality using ModelViewSet
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Property'
+      tags:
+      - property
+    put:
+      operationId: property_update
+      description: Property CRUD functionality using ModelViewSet
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Property'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Property'
+      tags:
+      - property
+    patch:
+      operationId: property_partial_update
+      description: Property CRUD functionality using ModelViewSet
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Property'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Property'
+      tags:
+      - property
+    delete:
+      operationId: property_delete
+      description: Property CRUD functionality using ModelViewSet
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - property
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this Property.
+      required: true
+      type: integer
+  /property/{property_id}/check-availability/:
+    post:
+      operationId: property_check-availability_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CheckAvailability'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/CheckAvailability'
+      tags:
+      - property
+    parameters:
+    - name: property_id
+      in: path
+      required: true
+      type: string
+  /property/{property_id}/report/:
+    get:
+      operationId: property_report_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Reservation'
+      tags:
+      - property
+    parameters:
+    - name: property_id
+      in: path
+      required: true
+      type: string
+  /property/{property_id}/reservation/:
+    post:
+      operationId: property_reservation_create
+      description: Creating reservation
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Reservation'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Reservation'
+      tags:
+      - property
+    parameters:
+    - name: property_id
+      in: path
+      required: true
+      type: string
+definitions:
+  Property:
+    required:
+    - property_name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      property_name:
+        title: Property name
+        type: string
+        maxLength: 250
+        minLength: 1
+      property_type:
+        title: Property type
+        type: string
+        enum:
+        - residential
+        - commercial
+        - industrial
+        - rural
+        - land
+        - rental
+        - other
+        x-nullable: true
+      total_room_number:
+        title: Total room number
+        type: integer
+        maximum: 2147483647
+        minimum: 0
+      location:
+        title: Location
+        type: string
+        maxLength: 250
+        x-nullable: true
+      neighborhood:
+        title: Neighborhood
+        type: string
+        maxLength: 250
+        x-nullable: true
+      accessibility:
+        title: Accessibility
+        type: string
+        maxLength: 250
+        x-nullable: true
+  CheckAvailability:
+    required:
+    - start_time
+    - end_time
+    - room_number
+    type: object
+    properties:
+      start_time:
+        title: Start time
+        type: string
+        format: date-time
+      end_time:
+        title: End time
+        type: string
+        format: date-time
+      room_number:
+        title: Room number
+        type: integer
+  Reservation:
+    required:
+    - customer
+    - room_number
+    - reservation_starts
+    - reservation_ends
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      customer:
+        title: Customer
+        type: string
+        maxLength: 250
+        minLength: 1
+      property:
+        title: Property
+        type: integer
+        readOnly: true
+      room_number:
+        title: Room number
+        type: integer
+        maximum: 2147483647
+        minimum: 0
+      reservation_starts:
+        title: Reservation starts
+        type: string
+        format: date-time
+      reservation_ends:
+        title: Reservation ends
+        type: string
+        format: date-time
