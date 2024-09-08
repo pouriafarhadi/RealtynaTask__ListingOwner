@@ -59,3 +59,5 @@ htmlcov/
 # Ignore temporary files
 *.tmp
 *.temp
+/pgadmin_data/
+/data/
