@@ -18,6 +18,8 @@ db_data/
 *.pgsql
 ./data
 ./pgadmin_data
+data
+pgadmin_data
 # Ignore Docker files and volumes
 docker-compose.override.yml
 docker-compose.*
