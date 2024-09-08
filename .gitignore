@@ -18,8 +18,8 @@ db_data/
 *.pgsql
 ./data
 ./pgadmin_data
-data
-pgadmin_data
+data/
+pgadmin_data/
 # Ignore Docker files and volumes
 
 *.env
@@ -29,8 +29,7 @@ pgadmin_data
 docker_logs/
 .docker/
 
-# Ignore static and compiled files
-staticfiles/
+
 
 # Environment variables files
 .env
@@ -56,9 +55,6 @@ htmlcov/
 # Ignore macOS files
 .DS_Store
 
-# Ignore compiled HTML and templates
-*.html.pyc
-templates/*.pyc
 
 # Ignore temporary files
 *.tmp
